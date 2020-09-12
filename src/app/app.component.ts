@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
 	public addTodo(): void {
 		this.todoList.push( this.todoForm.value.description);
 
-		this._resetTodoForm();
+		this.toggleTodoForm();
 	}
 
-	public completeTodo(index: number): void {
+	public onTodoCompleted(index: number): void {
 		const completedTodo = this.todoList[index];
 
 		this.completedTodoList.push(completedTodo);
@@ -44,13 +44,8 @@ export class AppComponent implements OnInit {
 	}
 
 	public toggleTodoForm(): void {
-		this._resetTodoForm();
+		this.todoForm.reset();
 
 		this.showNewTodoForm = !this.showNewTodoForm;
-	}
-
-	private _resetTodoForm(): void {
-		this.todoForm.reset();
-		this.todoForm.markAsPristine();
 	}
 }

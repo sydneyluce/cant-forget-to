@@ -1,0 +1,10 @@
+<mat-list>
+	<mat-list-item *ngFor="let todo of todos; index as i">
+		<span mat-line>{{todo}}</span>
+		<button mat-icon-button (click)="completeTodoClicked(i)"><mat-icon>check</mat-icon></button> 
+		<button mat-icon-button (click)="removeTodoClicked(i)"><mat-icon>delete</mat-icon></button>
+	</mat-list-item>
+	<mat-list-item *ngFor="let completedTodo of completedTodos">
+		<span mat-line class="completed-todo">{{completedTodo}}</span>
+	</mat-list-item>
+</mat-list>

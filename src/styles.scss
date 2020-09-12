@@ -1,4 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+	background-color: rgba(0,0,0,0.1);
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+li {
+	list-style: none;
+}
+
+.mat-card-header mat-card-title.mat-card-title {
+	margin-bottom: 0;
+}
+
+mat-form-field.mat-form-field {
+	display: block;
+	width: 100%;
+	margin-bottom: -8px;
+}
+
+.flex-fill {
+	flex: 1 1 auto;
+}

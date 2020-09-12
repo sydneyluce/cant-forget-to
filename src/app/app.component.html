@@ -8,23 +8,19 @@
 		<mat-card-content>
 			<app-todo-list 
 				[todos]="todoList" 
-				[completedTodos]="completedTodoList" 
-				(todoRemovalRequested)="removeTodo($event)"
-				(todoCompleted)="onTodoCompleted($event)">
+				[completedTodos]="completedTodoList"
+				(todoCompleted)="onTodoCompleted($event)"
+				(todoRemovalRequested)="onTodoRemovalRequested($event)">
 			</app-todo-list>
 
-			<form class="new-todo-field-wrapper" [formGroup]="todoForm" (ngSubmit)="addTodo()" autocomplete="off" *ngIf="showNewTodoForm">
-				<mat-form-field appearance="outline">
-					<mat-label>Write Something...</mat-label>
-					<input matInput type="text" formControlName="description">
-				</mat-form-field>
-
-				<button type="submit" mat-raised-button color="accent" [disabled]="!todoForm.valid">Add</button>
-				<button type="button" mat-button (click)="toggleTodoForm()">Cancel</button>
-			</form>
-
+			<div class="todo-form-wrapper" *ngIf="showTodoForm">
+				<app-todo-form
+					(submitted)="onTodoFormSubmitted($event)"
+					(cancelled)="toggleTodoForm()">
+				</app-todo-form>
+			</div>
 		</mat-card-content>
-		<div class="card-fab-placeholder" *ngIf="!showNewTodoForm">
+		<div class="mat-card-fab-cut-out" *ngIf="!showTodoForm">
 			<button mat-fab class="mat-elevation-z2" (click)='toggleTodoForm()'><mat-icon>add</mat-icon></button>
 		</div>
 	</mat-card>

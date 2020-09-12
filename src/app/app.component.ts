@@ -7,8 +7,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-	public showNewTodoForm = false;
-	public todoForm: FormGroup;
+	public showTodoForm = false;
 
 	public todoList = [
 		"Walk dog",
@@ -18,34 +17,31 @@ export class AppComponent implements OnInit {
 
 	public completedTodoList = [];
 
-	public ngOnInit(): void {
-		this.todoForm = new FormGroup({
-			description: new FormControl(null, Validators.required)
-		});
-	}
-
-
-	public addTodo(): void {
-		this.todoList.push( this.todoForm.value.description);
-
-		this.toggleTodoForm();
-	}
+	public ngOnInit(): void {}
 
 	public onTodoCompleted(index: number): void {
 		const completedTodo = this.todoList[index];
 
 		this.completedTodoList.push(completedTodo);
 
-		this.removeTodo(index);
+		this._removeTodo(index);
 	}
 
-	public removeTodo(index: number): void {
-		this.todoList.splice(index, 1);
+	public onTodoFormSubmitted(description: string): void {
+		this.todoList.push(description);
+
+		this.toggleTodoForm();
+	}
+
+	public onTodoRemovalRequested(index: number): void {
+		this._removeTodo(index);
 	}
 
 	public toggleTodoForm(): void {
-		this.todoForm.reset();
+		this.showTodoForm = !this.showTodoForm;
+	}
 
-		this.showNewTodoForm = !this.showNewTodoForm;
+	private _removeTodo(index: number): void {
+		this.todoList.splice(index, 1);
 	}
 }

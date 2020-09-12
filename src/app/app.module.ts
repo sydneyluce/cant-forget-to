@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
+import { TodoFormModule } from './todo-form/todo-form.module';
 import { TodoListModule } from './todo-list/todo-list.module';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { TodoListModule } from './todo-list/todo-list.module';
 	MatInputModule,
 	MatFormFieldModule,
 	MatToolbarModule,
+	TodoFormModule,
 	TodoListModule
   ],
   providers: [],

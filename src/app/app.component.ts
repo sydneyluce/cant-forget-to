@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { TodoService } from './services/todo/todo.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,41 +8,35 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+	public completedTodos$: Observable<string[]>;
+	public todos$: Observable<string[]>;
+
 	public showTodoForm = false;
 
-	public todoList = [
-		"Walk dog",
-		"Walk cat",
-		"Walk snake"
-	];
+	constructor(
+		private readonly _todoService: TodoService
+	) {}
 
-	public completedTodoList = [];
-
-	public ngOnInit(): void {}
+	public ngOnInit(): void {
+		this.completedTodos$ = this._todoService.compeletedTodoList;
+		this.todos$ = this._todoService.todoList;
+	}
 
 	public onTodoCompleted(index: number): void {
-		const completedTodo = this.todoList[index];
-
-		this.completedTodoList.push(completedTodo);
-
-		this._removeTodo(index);
+		this._todoService.completeTodo(index);
 	}
 
 	public onTodoFormSubmitted(description: string): void {
-		this.todoList.push(description);
+		this._todoService.addTodo(description);
 
 		this.toggleTodoForm();
 	}
 
 	public onTodoRemovalRequested(index: number): void {
-		this._removeTodo(index);
+		this._todoService.removeTodo(index);
 	}
 
 	public toggleTodoForm(): void {
 		this.showTodoForm = !this.showTodoForm;
-	}
-
-	private _removeTodo(index: number): void {
-		this.todoList.splice(index, 1);
 	}
 }

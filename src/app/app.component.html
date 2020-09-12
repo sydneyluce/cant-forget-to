@@ -7,8 +7,8 @@
 		</mat-card-header>
 		<mat-card-content>
 			<app-todo-list 
-				[todos]="todoList" 
-				[completedTodos]="completedTodoList"
+				[todos]="todos$ | async" 
+				[completedTodos]="completedTodos$ | async"
 				(todoCompleted)="onTodoCompleted($event)"
 				(todoRemovalRequested)="onTodoRemovalRequested($event)">
 			</app-todo-list>

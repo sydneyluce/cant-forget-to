@@ -2,7 +2,7 @@
 	<mat-card>
 		<mat-card-header>
 			<mat-card-title>
-				Cant Forget To...
+				Can't Forget To...
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
@@ -11,6 +11,9 @@
 				(todoCompleted)="onTodoCompleted($event)"
 				(todoRemovalRequested)="onTodoRemovalRequested($event)">
 			</app-todo-list>
+
+			<p *ngIf="!(todos$ | async).length && !showTodoForm" class="help-message">Click or tap the '+' button to add a new todo</p>
+
 
 			<div class="todo-form-wrapper" *ngIf="showTodoForm">
 				<app-todo-form

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Todo } from '../models/todo.interface';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,10 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 	@Input()
-	public todos: string[] = [];
-
-	@Input()
-	public completedTodos: string[] = [];
+	public todos: Todo[] = [];
 
 	@Output()
 	public todoCompleted: EventEmitter<number> = new EventEmitter();

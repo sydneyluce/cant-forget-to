@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './services/todo/todo.service';
 import { Observable } from 'rxjs';
+import { Todo } from './models/todo.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-	public completedTodos$: Observable<string[]>;
-	public todos$: Observable<string[]>;
+	public todos$: Observable<Todo[]>;
 
 	public showTodoForm = false;
 
@@ -18,8 +18,7 @@ export class AppComponent implements OnInit {
 	) {}
 
 	public ngOnInit(): void {
-		this.completedTodos$ = this._todoService.compeletedTodoList;
-		this.todos$ = this._todoService.todoList;
+		this.todos$ = this._todoService.todos;
 	}
 
 	public onTodoCompleted(index: number): void {

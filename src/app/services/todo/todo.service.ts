@@ -1,63 +1,56 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { Todo } from '../../models/todo.interface';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-	private readonly _completedTodoListKey: string = 'completedTodoList';
-	private readonly _todoListKey: string = 'todoList';
-
-	private _completedTodoList: BehaviorSubject<string[]>;
-	private _todoList: BehaviorSubject<string[]>;
+	private _todos: BehaviorSubject<Todo[]>;
 
 	constructor() {
-		this._completedTodoList = new BehaviorSubject(this._retrieveTodoListFromLocalStorage(this._completedTodoListKey));
-		this._todoList = new BehaviorSubject(this._retrieveTodoListFromLocalStorage(this._todoListKey));
+		this._todos = new BehaviorSubject<Todo[]>(this._retrieveTodosFromLocalStorage());
 	}
 
-	public get compeletedTodoList(): Observable<string[]> {
-		return this._completedTodoList.asObservable();
-	}
-
-	public get todoList(): Observable<string[]> {
-		return this._todoList.asObservable();
+	public get todos(): Observable<Todo[]> {
+		return this._todos.asObservable();
 	}
 
 	public addTodo(description: string): void {
-		const updatedTodoList = [...this._todoList.value, description];
+		const updatedTodos: Todo[] = [...this._todos.value, {description, completed: false}];
 
-		this._todoList.next(updatedTodoList);
+		this._todos.next(updatedTodos);
 
-		this._updateTodoListInLocalStorage(this._todoListKey, updatedTodoList);
+		this._updateTodosInLocalStorage(updatedTodos);
 	}
 
 	public completeTodo(index: number): void {
-		const updatedCompletedTodoList = [...this._completedTodoList.value, this._todoList.value[index]];
+		const updatedTodos = [...this._todos.value];
 
-		this._completedTodoList.next(updatedCompletedTodoList);
+		updatedTodos[index] = {...updatedTodos[index], completed: true}
 
-		this._updateTodoListInLocalStorage(this._completedTodoListKey, updatedCompletedTodoList);
+		this._todos.next(updatedTodos);
 
-		this.removeTodo(index);
+		this._updateTodosInLocalStorage(updatedTodos);
 	}
 
 	public removeTodo(index: number): void {
-		const updatedTodoList = [...this._todoList.value];
+		const updatedTodos = [...this._todos.value];
 
-		updatedTodoList.splice(index, 1);
+		updatedTodos.splice(index, 1);
 
-		this._todoList.next(updatedTodoList);
+		this._todos.next(updatedTodos);
 	
-		this._updateTodoListInLocalStorage(this._todoListKey, updatedTodoList);
+		this._updateTodosInLocalStorage(updatedTodos);
 	}
 
-	private _updateTodoListInLocalStorage(key: string, updatedTodoList: string[]): void {
-		localStorage.setItem(key, btoa(JSON.stringify(updatedTodoList)));
+	private _updateTodosInLocalStorage(updatedTodos: Todo[]): void {
+		localStorage.setItem('todos', btoa(JSON.stringify(updatedTodos)));
 	}
 
-	private _retrieveTodoListFromLocalStorage(key: string): string[] {
-		const serializedTodoList: string = localStorage.getItem(key);
+	private _retrieveTodosFromLocalStorage(): Todo[] {
+		const serializedTodoList: string = localStorage.getItem('todos');
 
 		return serializedTodoList ? JSON.parse(atob(serializedTodoList)) : [];
 	}

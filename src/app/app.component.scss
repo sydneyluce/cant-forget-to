@@ -1,17 +1,28 @@
 .todo-list-wrapper {
-	max-width: 760px;
+	max-width: 540px;
 	margin: 0 auto;
-	padding: 24px 16px 0;
+	padding: 24px 16px 40px;
 	position: relative;	
 }
 
 .todo-form-wrapper {
 	width: 100%;
-	margin: 6px 0 16px;
-	padding: 0 16px;
+	margin-bottom: 16px;
+	padding: 16px 16px 0;
+}
+
+.todo-decorator {
+	&:first-of-type {
+		margin-top: 8px;
+	}
+
+	&:not(:last-child) {
+		border-bottom: 1px dashed rgba(0,0,0,0.3);
+	}
 }
 
 .help-message {
+	padding-top: 8px;
 	margin-left: 16px;
 	color: rgba(0,0,0,0.56);
 }

@@ -3,20 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 
-import { TodoListComponent } from './todo-list.component';
+import { TodoComponent } from './todo.component';
 
 @NgModule({
-  declarations: [TodoListComponent],
+  declarations: [TodoComponent],
   imports: [
 	CommonModule,
 	MatButtonModule,
-	MatIconModule,
-	MatListModule,
+	MatIconModule
   ],
   exports: [
-	  TodoListComponent
+	  TodoComponent
   ]
 })
-export class TodoListModule { }
+export class TodoModule { }

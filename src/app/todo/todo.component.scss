@@ -1,0 +1,28 @@
+p {
+	margin: 0;
+}
+
+.todo {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 16px;
+
+	&__text-box {
+		padding-top: 12px;
+	}
+
+	&__text {
+		font-size: 16px;
+
+		&--completed {
+			color: rgba(0,0,0,0.34);
+			text-decoration: line-through;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		min-width: 80px;
+	}
+}

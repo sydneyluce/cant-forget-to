@@ -6,14 +6,18 @@
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
-			<app-todo-list 
-				[todos]="todos$ | async"
-				(todoCompleted)="onTodoCompleted($event)"
-				(todoRemovalRequested)="onTodoRemovalRequested($event)">
-			</app-todo-list>
+			<ng-container *ngFor="let todo of todos$ | async; index as i">
+				<div class="todo-decorator">
+					<app-todo 
+						[description]="todo.description" 
+						[completed]="todo.completed" 
+						(completeClicked)="onTodoCompleteClicked(i)"
+						(deleteClicked)="onTodoDeleteClicked(i)">
+					</app-todo>
+				</div>
+			</ng-container>
 
 			<p *ngIf="!(todos$ | async).length && !showTodoForm" class="help-message">Click or tap the '+' button to add a new todo</p>
-
 
 			<div class="todo-form-wrapper" *ngIf="showTodoForm">
 				<app-todo-form

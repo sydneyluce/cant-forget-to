@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { TodoFormModule } from './todo-form/todo-form.module';
-import { TodoListModule } from './todo-list/todo-list.module';
+import { TodoModule } from './todo/todo.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { TodoListModule } from './todo-list/todo-list.module';
 	MatIconModule,
 	MatToolbarModule,
 	TodoFormModule,
-	TodoListModule
+	TodoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

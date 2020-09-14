@@ -1,0 +1,9 @@
+<div class="todo">
+	<div class="todo__text-box">
+		<p class="todo__text" [ngClass]="{'todo__text--completed': completed}">{{description}}</p>
+	</div>
+	<div class="todo__actions">
+		<button *ngIf="!completed" mat-icon-button (click)="onCompleteClicked()"><mat-icon>check</mat-icon></button>
+		<button mat-icon-button (click)="onDeleteClicked()"><mat-icon>delete</mat-icon></button>
+	</div>
+</div>

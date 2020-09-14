@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 		this.todos$ = this._todoService.todos;
 	}
 
-	public onTodoCompleted(index: number): void {
+	public onTodoCompleteClicked(index: number): void {
 		this._todoService.completeTodo(index);
 	}
 
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 		this.toggleTodoForm();
 	}
 
-	public onTodoRemovalRequested(index: number): void {
+	public onTodoDeleteClicked(index: number): void {
 		this._todoService.removeTodo(index);
 	}
 

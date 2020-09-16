@@ -1,7 +1,7 @@
-.todo-list-wrapper {
+.main-content-wrapper {
 	max-width: 540px;
 	margin: 0 auto;
-	padding: 24px 16px 40px;
+	padding: 24px 16px 16px;
 	position: relative;	
 }
 
@@ -29,4 +29,10 @@
 	padding: 12px 0 24px;
 	margin-left: 16px;
 	color: rgba(0,0,0,0.56);
+}
+
+.footer-text {
+	text-align: center;
+	font-size: 14px;
+	padding: 24px 0;
 }

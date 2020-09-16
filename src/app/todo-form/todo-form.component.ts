@@ -19,7 +19,7 @@ export class TodoFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.todoForm = new FormGroup({
-			description: new FormControl(null, Validators.required)
+			description: new FormControl(null, [Validators.required, Validators.maxLength(120)])
 		});
 	}
 

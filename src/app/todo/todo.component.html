@@ -3,7 +3,7 @@
 		<p class="todo__text" [ngClass]="{'todo__text--completed': completed}">{{description}}</p>
 	</div>
 	<div class="todo__actions">
-		<button *ngIf="!completed" mat-icon-button (click)="onCompleteClicked()"><mat-icon>check</mat-icon></button>
-		<button mat-icon-button (click)="onDeleteClicked()"><mat-icon>delete</mat-icon></button>
+		<button *ngIf="!completed" mat-icon-button (click)="onCompleteClicked()" aria-label="Complete Todo"><mat-icon>check</mat-icon></button>
+		<button mat-icon-button (click)="onDeleteClicked()" aria-label="Delete Todo"><mat-icon>delete</mat-icon></button>
 	</div>
 </div>

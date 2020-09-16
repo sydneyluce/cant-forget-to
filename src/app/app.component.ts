@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TodoService } from './services/todo/todo.service';
 import { Observable } from 'rxjs';
 import { Todo } from './models/todo.interface';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,14 @@ export class AppComponent implements OnInit {
 	public showTodoForm = false;
 
 	constructor(
-		private readonly _todoService: TodoService
+		private readonly _todoService: TodoService,
+		@Inject(PLATFORM_ID) private _platoform
 	) {}
 
 	public ngOnInit(): void {
-		this.todos$ = this._todoService.todos;
+		if (isPlatformBrowser(this._platoform)) {
+			this.todos$ = this._todoService.todos;
+		} 
 	}
 
 	public onTodoCompleteClicked(index: number): void {

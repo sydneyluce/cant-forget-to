@@ -16,7 +16,7 @@ import { TodoModule } from './todo/todo.module';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
 	BrowserAnimationsModule,
 	MatButtonModule,
 	MatCardModule,

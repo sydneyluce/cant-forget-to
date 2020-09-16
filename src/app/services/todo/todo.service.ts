@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Todo } from '../../models/todo.interface';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,12 @@ import { Todo } from '../../models/todo.interface';
 export class TodoService {
 	private _todos: BehaviorSubject<Todo[]>;
 
-	constructor() {
-		this._todos = new BehaviorSubject<Todo[]>(this._retrieveTodosFromLocalStorage());
+	constructor(
+		@Inject(PLATFORM_ID) private _platform
+	) {
+		if (isPlatformBrowser(this._platform)) {
+			this._todos = new BehaviorSubject<Todo[]>(this._retrieveTodosFromLocalStorage());
+		}
 	}
 
 	public get todos(): Observable<Todo[]> {

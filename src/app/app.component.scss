@@ -7,7 +7,7 @@
 
 .todo-form-wrapper {
 	width: 100%;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	padding: 16px 16px 0;
 }
 
@@ -16,13 +16,17 @@
 		margin-top: 8px;
 	}
 
+	&:last-child {
+		padding-bottom: 8px;
+	}
+
 	&:not(:last-child) {
 		border-bottom: 1px dashed rgba(0,0,0,0.3);
 	}
 }
 
 .help-message {
-	padding-top: 8px;
+	padding: 12px 0 24px;
 	margin-left: 16px;
 	color: rgba(0,0,0,0.56);
 }

@@ -50,8 +50,8 @@ export class TodoService {
 	}
 
 	private _retrieveTodosFromLocalStorage(): Todo[] {
-		const serializedTodoList: string = localStorage.getItem('todos');
+		const serializedTodos: string = localStorage.getItem('todos');
 
-		return serializedTodoList ? JSON.parse(atob(serializedTodoList)) : [];
+		return serializedTodos ? JSON.parse(atob(serializedTodos)) : [];
 	}
 }
